@@ -7,40 +7,41 @@ namespace NotasAlunosTechClass
         public string Nome;
         public double Nota1, Nota2, Nota3;
         public double PontosFaltantes = 60;
-        public double Resultado;
+        public double Media;
 
-        public double CalculaMedia()
+        public NotasAlunos(string nome, double nota1, double nota2, double nota3)
         {
-            
-            Resultado = (Nota1 * 30 / 100) + (Nota2 * 35 / 100) + (Nota3 * 35 / 100);
+            Nome = nome;
+            Nota1 = nota1;
+            Nota2 = nota2;
+            Nota3 = nota3;
 
-            if (Resultado >= PontosFaltantes)
-            {
-                Console.WriteLine($"Parabéns, sua nota foi: {Resultado:F2}. Você está APROVADO.");
-            }
-            else
-            {
-                Console.WriteLine($"Oh não, não desanime. Sua nota foi: {Resultado:F2}. Você está REPROVADO.");
-            }
-
-            return Resultado;
         }
 
+        public double CalculaMediaPonderada()
+        {
+
+            Media = (Nota1 * 30 / 100) + (Nota2 * 35 / 100) + (Nota3 * 35 / 100);
+
+            return Media;
+        }
         public double CalculaPontosFaltantes()
         {
-           
-            if (Resultado < PontosFaltantes)
+            if (Media < PontosFaltantes)
             {
-                double pontos = PontosFaltantes - Resultado;
-                Console.WriteLine($"Você precisa de mais {pontos:F2} pontos para ser aprovado.");
-                return pontos;
+                return PontosFaltantes - Media;
             }
             else
             {
-                
-                Console.WriteLine("Nenhum ponto faltante, você está aprovado.");
-                return 0;
+                return 0; 
             }
+        }
+
+        public override string ToString() 
+        
+        {
+            return $"Sua media foi: {CalculaMediaPonderada():F2}\n" +
+                   $"Faltaram: {CalculaPontosFaltantes()}";
         }
     }
 }
