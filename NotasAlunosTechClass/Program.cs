@@ -26,19 +26,21 @@ namespace NotasAlunosTechClass
 
 
             NotasAlunos notasAlunos = new NotasAlunos(nome, nota1, nota2, nota3);
+            double notaFinal = notasAlunos.CalculaMediaPonderada();
 
-            double mediaPonderada = notasAlunos.CalculaMediaPonderada();
+            
             
             Console.WriteLine(sep);
 
-            if (mediaPonderada >= 60.0)
+            if (notaFinal >= 60)
 
             {
                 Console.WriteLine("Parabéns voce foi APROVADO!");
             }
 
             else {
-                Console.WriteLine("Oh não, não desanime continue estudando! Você está REPROVADO");
+                double pontosFaltantes = 60 - notaFinal;
+                Console.WriteLine($"Oh não, não desanime continue estudando! Você está REPROVADO, \nFaltam: {pontosFaltantes}");
             }
 
 
